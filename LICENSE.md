@@ -1,2 +1,2 @@
 
-Copyright (C) 2017 
+Copyright Tass International (C) 2017 
