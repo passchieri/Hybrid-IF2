@@ -20,9 +20,6 @@ import com.rabbitmq.client.Envelope;
 import com.rabbitmq.client.ShutdownSignalException;
 
 /**
- * @author Igor Passchier
- * 
- * 
  *         This is a basic example implementation of the Intercor IF2 interface.
  *         It combines the function to publish a message to the AMQP message
  *         broker (which is formally not part of the IF2 specification, but
@@ -35,10 +32,12 @@ import com.rabbitmq.client.ShutdownSignalException;
  *         path}
  * 
  *         A broker should be available to connect to. The connection parameters
- *         are hardcoded, and should be adjusted in line with the actual broker
+ *         are hard-coded, and should be adjusted in line with the actual broker
  *         used.
  *
- */
+ * @author Igor Passchier
+ * @copyright (c) Tass International BV
+ * */
 public class IF2Client {
 
 	/**

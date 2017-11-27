@@ -5,8 +5,9 @@ package quadtree;
  * remove the whole conversion to image points, as it has no effect on the
  * conversion bewteen lat/lon and tiles.
  * 
- * @author Igor
- *
+ * @author Igor Passchier
+ * @copyright (c) Tass International BV
+ * *
  */
 class ImageMapPoint {
 	final double x;

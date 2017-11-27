@@ -4,6 +4,7 @@ package quadtree;
  * Simple representation of a point in Mercator space.
  * 
  * @author Igor Passchier
+ * @copyright (c) Tass International BV
  *
  */
 public class MercatorPoint {

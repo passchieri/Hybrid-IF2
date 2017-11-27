@@ -4,7 +4,8 @@ package quadtree;
  * Simple representation of a latitude/longitude value.
  * 
  * @author Igor Passchier
- *
+ * @copyright (c) Tass International BV
+ * *
  */
 class LatLon {
 	@Override
