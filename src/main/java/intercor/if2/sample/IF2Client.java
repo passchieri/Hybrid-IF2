@@ -84,11 +84,11 @@ public class IF2Client {
 	/**
 	 * User name used to connect to the AMQP broker
 	 */
-	private static final String USER = "rws";
+	private static final String USER = "prosumer";
 	/**
 	 * Password to connect to the AMQP broker
 	 */
-	private static final String PASSWORD = "secret";
+	private static final String PASSWORD = "prosumerpw";
 	/**
 	 * Virtual host to connect to
 	 */

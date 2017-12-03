@@ -6,6 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>intercor.if2.sample</name>
 	<description>Intercor sample application for IF2</description>
+	<packaging>jar</packaging>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
 		<dependency>
@@ -13,9 +14,10 @@
 			<artifactId>amqp-client</artifactId>
 			<version>5.0.0</version>
 		</dependency>
-
-
 	</dependencies>
+
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -26,6 +28,24 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.5.9.RELEASE</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>spring-boot</classifier>
+							<mainClass>
+								intercor.if2.sample.IF2Client
+							</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
