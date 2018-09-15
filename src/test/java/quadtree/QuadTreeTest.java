@@ -1,7 +1,7 @@
 package quadtree;
 /**
  * @author Igor Passchier
- * @copyright (c) Tass International BV *
+ * @copyright (c) Tass International BV 
  *
  */
 
