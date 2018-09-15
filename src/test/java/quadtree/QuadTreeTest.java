@@ -1,17 +1,14 @@
-/**
- * 
- */
 package quadtree;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
 /**
  * @author Igor Passchier
  * @copyright (c) Tass International BV *
  *
  */
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 public class QuadTreeTest {
 
 	@Test
