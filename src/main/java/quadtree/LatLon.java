@@ -1,7 +1,7 @@
 package quadtree;
 
 /**
- * Simple representation of a latitude/longitude value.
+ * Simple representation of a latitude/longitude in WGS84 value.
  * 
  * @author Igor Passchier
  * @copyright (c) Tass International BV
@@ -42,6 +42,12 @@ class LatLon {
 	public LatLon(double lat, double lon) {
 		this.lat = lat;
 		this.lon = lon;
+	}
+	
+	public LatLon(MercatorPoint mp) {
+		LatLon ll = Mercator.mercatorToLatLon(mp);
+		this.lat=ll.lat;
+		this.lon=ll.lon;
 	}
 
 	public MercatorPoint asMercatorPoint() {

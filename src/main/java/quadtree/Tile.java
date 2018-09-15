@@ -6,8 +6,7 @@ package quadtree;
  * implemented in globalmaptiles.py.
  * 
  * @author Igor Passchier
- * @copyright (c) Tass International BV
- * *
+ * @copyright (c) Tass International BV *
  */
 class Tile {
 	final int x;
@@ -19,37 +18,65 @@ class Tile {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public Tile(String quadtree) {
-		this(quadtree,"");
+		this(quadtree, "");
 	}
-	
-	public Tile(String quadtree,String sep) {
-		String qt=quadtree.replace(sep, "");
-		if (!qt.matches("^[0123]*$")) throw new RuntimeException(quadtree+ " not a valid quadtree path");
-		this.zoom=qt.length();
-		int x=0;int y=0;
-		for(char c : qt.toCharArray()) {
-			x=x<<1;
-			y=y<<1;
-			switch(c) {
-				case '0':
-					y+=1;
-					break;
-				case '1':
-					x+=1;
-					y+=1;
-					break;
-				case '2':
-					break;
-				case '3':
-					x+=1;
-					break;
-				default:
-					throw new RuntimeException();
-			}		
+
+	public Tile(String quadtree, String sep) {
+		String qt = quadtree.replace(sep, "");
+		if (!qt.matches("^[0123]*$"))
+			throw new RuntimeException(quadtree + " not a valid quadtree path");
+		this.zoom = qt.length();
+		int x = 0;
+		int y = 0;
+		for (char c : qt.toCharArray()) {
+			x = x << 1;
+			y = y << 1;
+			switch (c) {
+			case '0':
+				y += 1;
+				break;
+			case '1':
+				x += 1;
+				y += 1;
+				break;
+			case '2':
+				break;
+			case '3':
+				x += 1;
+				break;
+			default:
+				throw new RuntimeException();
+			}
 		}
-		this.x=x;this.y=y;
+		this.x = x;
+		this.y = y;
+	}
+
+	public LatLon getUpperLeftCorner() {
+		return new ImageMapPoint(this.zoom, x * Mercator.TILE_SIZE, y * Mercator.TILE_SIZE).asMercatorPoint()
+				.asLatLon();
+	}
+
+	public LatLon getLowerLeftCorner() {
+		return new ImageMapPoint(this.zoom, x * Mercator.TILE_SIZE, (y + 1) * Mercator.TILE_SIZE).asMercatorPoint()
+				.asLatLon();
+	}
+
+	public LatLon getUpperRightCorner() {
+		return new ImageMapPoint(this.zoom, (x + 1) * Mercator.TILE_SIZE, y * Mercator.TILE_SIZE).asMercatorPoint()
+				.asLatLon();
+	}
+
+	public LatLon getLowerRightCorner() {
+		return new ImageMapPoint(this.zoom, (x + 1) * Mercator.TILE_SIZE, (y + 1) * Mercator.TILE_SIZE)
+				.asMercatorPoint().asLatLon();
+	}
+
+	public LatLon[] getCorners() {
+		return new LatLon[] { getUpperLeftCorner(), getUpperRightCorner(), getLowerRightCorner(),
+				getLowerLeftCorner() };
 	}
 
 	public String getQuadTree(String seperator) {
@@ -64,7 +91,7 @@ class Tile {
 			if ((ty & mask) != 0) {
 				digit += 2;
 			}
-			qt.append( seperator + digit);
+			qt.append(seperator + digit);
 		}
 		return qt.toString();
 	}
@@ -105,6 +132,5 @@ class Tile {
 	public String toString() {
 		return "<" + x + ", " + y + " (" + zoom + ")>";
 	}
-	
 
 }

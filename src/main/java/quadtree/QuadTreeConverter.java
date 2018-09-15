@@ -75,7 +75,7 @@ public class QuadTreeConverter {
 	 * @param argv
 	 */
 	public static void main(String[] argv) {
-		LatLon ll = new LatLon(51.46769695622339, 5.625);
+		LatLon ll = new LatLon(51.467, 5.625);
 		System.out.println("LL: " + ll);
 		MercatorPoint merc = ll.asMercatorPoint();
 		System.out.println("Mercator: " + merc);
@@ -91,9 +91,9 @@ public class QuadTreeConverter {
 		System.out.println("Quadtree: " + qt);
 		Tile s = new Tile(qt);
 		System.out.println(s + "," + s.getQuadTree());
-		ImageMapPoint[] corners = ImageMapPoint.getCornersAsImageMapPoints(s);
-		for (ImageMapPoint c : corners) {
-			System.out.println(c.asMercatorPoint().asLatLon());
+		LatLon[] corners = s.getCorners();
+		for (LatLon c : corners) {
+			System.out.println(c);
 		}
 
 		qt = QuadTreeConverter.getQuadTree(16, 51.46769695622339, 5.625);

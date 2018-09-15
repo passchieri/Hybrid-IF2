@@ -13,8 +13,6 @@ class ImageMapPoint {
 	final double y;
 	final int zoom;
 
-	private static final int tileSize = 256;
-
 	public ImageMapPoint(int zoom, double x, double y) {
 		this.zoom = zoom;
 		this.x = x;
@@ -28,8 +26,11 @@ class ImageMapPoint {
 		y = (m.y - Mercator.Y0) / res;
 	}
 
+	/*
+	 * Distance on the mercator map per pixel.
+	 */
 	private double resolution() {
-		int NoOfPix = tileSize * (1 << zoom);
+		int NoOfPix = Mercator.TILE_SIZE * (1 << zoom);
 		return Mercator.MERCATOR_SIZE / NoOfPix;
 	}
 
@@ -39,8 +40,8 @@ class ImageMapPoint {
 	}
 
 	public Tile getContainingTile() {
-		int tx = (int) (Math.ceil(x / (1. * tileSize)) - 1);
-		int ty = (int) (Math.ceil(y / (1. * tileSize)) - 1);
+		int tx = (int) (Math.ceil(x / (1. * Mercator.TILE_SIZE)) - 1);
+		int ty = (int) (Math.ceil(y / (1. * Mercator.TILE_SIZE)) - 1);
 		return new Tile(zoom, tx, ty);
 	}
 
@@ -48,16 +49,5 @@ class ImageMapPoint {
 		double mx = x * resolution() + Mercator.X0;
 		double my = y * resolution() + Mercator.Y0;
 		return new MercatorPoint(mx, my);
-	}
-
-	public static ImageMapPoint[] getCornersAsImageMapPoints(Tile t) {
-		int tx = t.x;
-		int ty = t.y;
-		int zoom = t.zoom;
-		double x = (tx - 1) * tileSize;
-		double y = (ty - 1) * tileSize;
-		return new ImageMapPoint[] { new ImageMapPoint(zoom, x, y), new ImageMapPoint(zoom, x + tileSize, y),
-				new ImageMapPoint(zoom, x + tileSize, y + tileSize), new ImageMapPoint(zoom, x, y + tileSize) };
-
 	}
 }

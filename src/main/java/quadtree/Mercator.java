@@ -10,6 +10,9 @@ package quadtree;
 public class Mercator {
 	public static final double EARTH_RADIUS = 6378137; // earth radius in m
 	public static final double MERCATOR_SIZE = 2 * Math.PI * EARTH_RADIUS; // width of the mercator map, in m
+	
+	public static final int TILE_SIZE = 256; //number of image pixels per tile
+
 
 	public static final double X0 = -0.5 * MERCATOR_SIZE; // left side of the map, in m
 	public static final double Y0 = X0; // top side of the map, in m
