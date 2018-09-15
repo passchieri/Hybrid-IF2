@@ -8,7 +8,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author passchieri
+ * @author Igor Passchier
+ * @copyright (c) Tass International BV *
  *
  */
 public class QuadTreeTest {
@@ -47,7 +48,7 @@ public class QuadTreeTest {
 	@Test
 	public void testCorners() {
 		Tile t = new LatLon(51.46769695622339, 5.625).getContainingTile(16);
-		 t = new LatLon(55, 25).getContainingTile(16);
+		t = new LatLon(55, 25).getContainingTile(16);
 		LatLon ulc = t.getUpperLeftCorner();
 		assertEquals(ulc.lat, 54.99967515853579, 1E-6);
 		assertEquals(ulc.lon, 24.99938964843749, 1E-6);
@@ -55,11 +56,11 @@ public class QuadTreeTest {
 		ulc = t.getUpperRightCorner();
 		assertEquals(ulc.lat, 54.99967515853579, 1E-6);
 		assertEquals(ulc.lon, 25.004882812499986, 1E-6);
-		
+
 		ulc = t.getLowerLeftCorner();
 		assertEquals(ulc.lat, 55.0028258097932, 1E-6);
 		assertEquals(ulc.lon, 24.99938964843749, 1E-6);
-		
+
 		ulc = t.getLowerRightCorner();
 		assertEquals(ulc.lat, 55.0028258097932, 1E-6);
 		assertEquals(ulc.lon, 25.004882812499986, 1E-6);
