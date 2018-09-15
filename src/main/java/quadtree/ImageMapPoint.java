@@ -6,15 +6,14 @@ package quadtree;
  * conversion bewteen lat/lon and tiles.
  * 
  * @author Igor Passchier
- * @copyright (c) Tass International BV
- * *
+ * @copyright (c) Tass International BV *
  */
 class ImageMapPoint {
 	final double x;
 	final double y;
 	final int zoom;
 
-	private final int tileSize = 256;
+	private static final int tileSize = 256;
 
 	public ImageMapPoint(int zoom, double x, double y) {
 		this.zoom = zoom;
@@ -49,5 +48,16 @@ class ImageMapPoint {
 		double mx = x * resolution() + Mercator.X0;
 		double my = y * resolution() + Mercator.Y0;
 		return new MercatorPoint(mx, my);
+	}
+
+	public static ImageMapPoint[] getCornersAsImageMapPoints(Tile t) {
+		int tx = t.x;
+		int ty = t.y;
+		int zoom = t.zoom;
+		double x = (tx - 1) * tileSize;
+		double y = (ty - 1) * tileSize;
+		return new ImageMapPoint[] { new ImageMapPoint(zoom, x, y), new ImageMapPoint(zoom, x + tileSize, y),
+				new ImageMapPoint(zoom, x + tileSize, y + tileSize), new ImageMapPoint(zoom, x, y + tileSize) };
+
 	}
 }

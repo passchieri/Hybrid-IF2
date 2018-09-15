@@ -30,7 +30,7 @@ public class Mercator {
 
 	public static LatLon mercatorToLatLon(MercatorPoint m) {
 		double lon = m.x / (MERCATOR_SIZE / 360.);
-		double lat = m.y / MERCATOR_SIZE / 360. * 2. * Math.PI;
+		double lat = m.y / MERCATOR_SIZE   * 2. * Math.PI;
 		lat = Math.exp(lat);
 		lat = Math.atan(lat) - Math.PI / 4.;
 		lat = lat * 180. / Math.PI * 2;

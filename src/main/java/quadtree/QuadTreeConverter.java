@@ -14,8 +14,7 @@ package quadtree;
  * The behaviour is undefined outside this area.
  * 
  * @author Igor Passchier
- * @copyright (c) Tass International BV
- * *
+ * @copyright (c) Tass International BV *
  */
 public class QuadTreeConverter {
 
@@ -76,7 +75,28 @@ public class QuadTreeConverter {
 	 * @param argv
 	 */
 	public static void main(String[] argv) {
-		String qt = QuadTreeConverter.getQuadTree(16, 51.46769695622339, 5.625);
+		LatLon ll = new LatLon(51.46769695622339, 5.625);
+		System.out.println("LL: " + ll);
+		MercatorPoint merc = ll.asMercatorPoint();
+		System.out.println("Mercator: " + merc);
+		ImageMapPoint imp = merc.asImagePoint(16);
+		System.out.println("ImagePOint: " + imp);
+		merc = imp.asMercatorPoint();
+		System.out.println("Mercator: " + merc);
+		ll = merc.asLatLon();
+		System.out.println("LL: " + ll);
+		Tile tile = imp.getContainingTile();
+		System.out.println("Tile: " + tile);
+		String qt = tile.getQuadTree();
+		System.out.println("Quadtree: " + qt);
+		Tile s = new Tile(qt);
+		System.out.println(s + "," + s.getQuadTree());
+		ImageMapPoint[] corners = ImageMapPoint.getCornersAsImageMapPoints(s);
+		for (ImageMapPoint c : corners) {
+			System.out.println(c.asMercatorPoint().asLatLon());
+		}
+
+		qt = QuadTreeConverter.getQuadTree(16, 51.46769695622339, 5.625);
 		if (qt.equals("1202021311313133")) {
 			System.out.println("Quattree correct: " + qt);
 		} else {

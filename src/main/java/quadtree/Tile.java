@@ -19,9 +19,41 @@ class Tile {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public Tile(String quadtree) {
+		this(quadtree,"");
+	}
+	
+	public Tile(String quadtree,String sep) {
+		String qt=quadtree.replace(sep, "");
+		if (!qt.matches("^[0123]*$")) throw new RuntimeException(quadtree+ " not a valid quadtree path");
+		this.zoom=qt.length();
+		int x=0;int y=0;
+		for(char c : qt.toCharArray()) {
+			x=x<<1;
+			y=y<<1;
+			switch(c) {
+				case '0':
+					y+=1;
+					break;
+				case '1':
+					x+=1;
+					y+=1;
+					break;
+				case '2':
+					break;
+				case '3':
+					x+=1;
+					break;
+				default:
+					throw new RuntimeException();
+			}		
+		}
+		this.x=x;this.y=y;
+	}
 
 	public String getQuadTree(String seperator) {
-		String qt = "";
+		StringBuffer qt = new StringBuffer("");
 		int ty = ((1 << zoom) - 1) - y;
 		for (int i = zoom; i > 0; i--) {
 			int digit = 0;
@@ -32,9 +64,9 @@ class Tile {
 			if ((ty & mask) != 0) {
 				digit += 2;
 			}
-			qt += seperator + digit;
+			qt.append( seperator + digit);
 		}
-		return qt;
+		return qt.toString();
 	}
 
 	public String getQuadTree() {
@@ -73,4 +105,6 @@ class Tile {
 	public String toString() {
 		return "<" + x + ", " + y + " (" + zoom + ")>";
 	}
+	
+
 }
