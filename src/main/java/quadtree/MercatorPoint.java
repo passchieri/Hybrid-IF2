@@ -10,6 +10,7 @@ package quadtree;
 public class MercatorPoint {
 	final double x;
 	final double y;
+	ImageMapPoint imp = null;
 
 	public MercatorPoint(double x, double y) {
 		this.x = x;
@@ -22,7 +23,13 @@ public class MercatorPoint {
 	}
 
 	public ImageMapPoint asImagePoint(int zoom) {
-		return new ImageMapPoint(zoom, this);
+		if (imp == null)
+			imp = new ImageMapPoint(zoom, this);
+		return imp;
+	}
+	
+	public LatLon asLatLon() {
+		return Mercator.mercatorToLatLon(this);
 	}
 
 	public Tile getContainingTile(int zoom) {
