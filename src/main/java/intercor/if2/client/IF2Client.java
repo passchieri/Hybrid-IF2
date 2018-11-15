@@ -81,9 +81,10 @@ abstract public class IF2Client {
 	private String reconstructUri(ConnectionFactory factory) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(("amqp" + (factory.isSSL() ? "s" : "") + "://"));
-		buf.append(factory.getUsername() + ":" + factory.getPassword()+"@");
-		buf.append(factory.getHost() + ":" + factory.getPort());
-		buf.append("/" + factory.getVirtualHost());
+		buf.append(factory.getUsername() + ":" + factory.getPassword() + "@");
+		buf.append(factory.getHost() + ":" + factory.getPort() + "/");
+		if (!factory.getVirtualHost().equals("/"))
+			buf.append("/" + factory.getVirtualHost());
 		return buf.toString();
 	}
 
@@ -98,7 +99,8 @@ abstract public class IF2Client {
 		factory.setHost(props.get(HOST).toString());
 		factory.setUsername(props.get(USER).toString());
 		factory.setPassword(props.get(PASSWORD).toString());
-		factory.setVirtualHost(props.get(VIRTUALHOST).toString());
+		if (props.get(VIRTUALHOST).toString().length() > 0)
+			factory.setVirtualHost(props.get(VIRTUALHOST).toString());
 		factory.setPort(((Number) props.get(PORT)).intValue());
 
 		String uri = "not defined yet";
