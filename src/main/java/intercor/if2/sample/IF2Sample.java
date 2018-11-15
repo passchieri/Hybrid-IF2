@@ -21,38 +21,16 @@ import intercor.if2.client.IF2Producer;
  *         <message type>.<message version>.<provider>.<subtype id>.{quadtree
  *         path}
  * 
- *         A broker should be available to connect to. The connection parameters
- *         are hard-coded, and should be adjusted in line with the actual broker
- *         used.
+ *         A broker should be available to connect to. The default connection parameters
+ *         are coded in {@link IF2Client}, but can be modified by providing them on the 
+ *         command line, e.g. username=user password=pwd etc. See {@link IF2Client} for all
+ *         available parameters.
  *
  * @author Igor Passchier
  * @copyright (c) Tass International BV
  * */
 public class IF2Sample {
 
-
-
-	/**
-	 * User name used to connect to the AMQP broker
-	 */
-	private static final String USER = "prosumer";
-	/**
-	 * Password to connect to the AMQP broker
-	 */
-	private static final String PASSWORD = "prosumerpw";
-	/**
-	 * Virtual host to connect to
-	 */
-	private static final String VIRTUALHOST = "test";
-	/**
-	 * Hostname or IP address of the broker
-	 */
-	private static String HOST = "localhost";
-	/**
-	 * Exchange to connect to. This is only used by the consumer, the publisher uses
-	 * the message type for publication.
-	 */
-	private static String EXCHANGE = "DENM";
 	/**
 	 * Sleep time between in ms publishing messages. No sleep time is required, but
 	 * the consumer disconnects after the last message publication. If the consumer
@@ -61,9 +39,6 @@ public class IF2Sample {
 	 * large enough for the message roundtrip + message handling by the broker.
 	 */
 	private static int SLEEP = 100;
-
-
-
 
 
 	/**
@@ -223,10 +198,6 @@ public class IF2Sample {
 		publisher.disconnect();
 	}
 
-
-
-
-
 	private static Map<String,Object> parseCommand(String[] args) {
 		HashMap<String, Object> properties=new HashMap<>();
 		for(String s: args) {
@@ -245,9 +216,6 @@ public class IF2Sample {
 		}
 		return properties;
 	}
-
-
-
 
 
 	private static Vector<Datum> createFakeData() {
