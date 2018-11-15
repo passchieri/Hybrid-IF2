@@ -5,23 +5,22 @@ package intercor.if2.client;
  * @copyright (c) Tass International BV
  */
 
-
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.AMQP.BasicProperties.Builder;
 
 public class IF2Producer extends IF2Client {
 
-	/**
-	 * Sleep time between in ms publishing messages. No sleep time is required, but
-	 * the consumer disconnects after the last message publication. If the consumer
-	 * disconnects before all messages are received, then not all messages are
-	 * received, and it looks as if mesasges are irronously lost. So SLEEP should be
-	 * large enough for the message roundtrip + message handling by the broker.
-	 */
-	private static int SLEEP = 100;
+	public IF2Producer() {
+		super();
+	}
+
+	public IF2Producer(Map<String, Object> properties) {
+		super(properties);
+	}
 
 	/**
 	 * Publish a message to an previously opened connection and channel.

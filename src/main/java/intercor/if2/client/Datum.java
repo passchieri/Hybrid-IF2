@@ -9,7 +9,7 @@ import quadtree.QuadTreeConverter;
  * @copyright (c) Tass International BV
  *
  */
-class Datum {
+public class Datum {
 	double lat; // latitude of the data
 	double lon; // longitude of the data
 	int zoom; // zoom level at which the data should be published
