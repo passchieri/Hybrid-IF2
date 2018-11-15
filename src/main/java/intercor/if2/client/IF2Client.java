@@ -18,7 +18,6 @@ import com.rabbitmq.client.ShutdownSignalException;
  */
 abstract public class IF2Client {
 
-
 	/**
 	 * User name used to connect to the AMQP broker. Defaults to prosumer
 	 */
@@ -40,7 +39,8 @@ abstract public class IF2Client {
 	public static final String HOST = "HOST";
 
 	/**
-	 * TCP port of the broker. Defaults to 5671 when ssl is used, and 5672 when not. Note, that this should be an Integer
+	 * TCP port of the broker. Defaults to 5671 when ssl is used, and 5672 when not.
+	 * Note, that this should be an Integer
 	 */
 	public static final String PORT = "PORT";
 
@@ -60,7 +60,6 @@ abstract public class IF2Client {
 	protected Channel channel;
 	protected Map<String, Object> props = new HashMap<>();
 
-	
 	public IF2Client() {
 		props.put(HOST, "localhost");
 		props.put(PORT, 5671);
@@ -73,10 +72,19 @@ abstract public class IF2Client {
 
 	public IF2Client(Map<String, Object> properties) {
 		this();
-		/*Change the default port, based on whether SSL is requested */
+		/* Change the default port, based on whether SSL is requested */
 		if (properties.containsKey(USESSL) && !(Boolean) properties.get(USESSL))
 			props.put(PORT, 5672);
 		this.props.putAll(properties);
+	}
+
+	private String reconstructUri(ConnectionFactory factory) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(("amqp" + (factory.isSSL() ? "s" : "") + "://"));
+		buf.append(factory.getUsername() + ":" + factory.getPassword()+"@");
+		buf.append(factory.getHost() + ":" + factory.getPort());
+		buf.append("/" + factory.getVirtualHost());
+		return buf.toString();
 	}
 
 	/**
@@ -93,15 +101,17 @@ abstract public class IF2Client {
 		factory.setVirtualHost(props.get(VIRTUALHOST).toString());
 		factory.setPort(((Number) props.get(PORT)).intValue());
 
+		String uri = "not defined yet";
 		try {
 			if ((Boolean) props.get(USESSL)) {
 				factory.useSslProtocol();
 			}
+			final String url = uri = reconstructUri(factory);
 			connection = factory.newConnection();
 			connection.addShutdownListener((ShutdownSignalException cause) -> {
-				System.out.println("Connection closed");
+				System.out.println("Connection closed to " + url);
 			});
-			System.out.println("Connection opened");
+			System.out.println("Connection opened to " + url);
 			channel = connection.createChannel();
 			channel.addShutdownListener((ShutdownSignalException cause) -> {
 				System.out.println("Channel closed");
@@ -109,6 +119,7 @@ abstract public class IF2Client {
 			System.out.println("Channel opened");
 
 		} catch (Exception e) {
+			System.out.println("Exception in connect to " + uri);
 			disconnect();
 			throw e;
 
