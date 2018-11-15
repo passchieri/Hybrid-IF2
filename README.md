@@ -3,6 +3,6 @@ This project contains sample code to implement IF2 of the Intercor project. The 
 
 The code is by no means robust, and should not be used in an operational environment. It is merely intended to demonstrate the basic functions that are required to implement the Intercor IF2 interface. 
 
- The default connection parameters are coded in [IF2Client.java](src/interfor/if2/client/IF2Client.java), but can be modified by providing them on the 
-command line, e.g. username=user password=pwd etc. See [IF2Client.java](src/interfor/if2/client/IF2Client.java) for all
+ The default connection parameters are coded in [IF2Client.java](/passchieri/Hybrid-IF2/blob/master/src/main/java/intercor/if2/client/IF2Client.java), but can be modified by providing them on the 
+command line, e.g. username=user password=pwd etc. See [IF2Client.java](/passchieri/Hybrid-IF2/blob/master/src/main/java/intercor/if2/client/IF2Client.java) for all
 available parameters.
