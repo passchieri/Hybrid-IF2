@@ -9,6 +9,7 @@
 	<description>Intercor sample application for IF2</description>
 	<packaging>jar</packaging>
 	<dependencies>
+
 		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
