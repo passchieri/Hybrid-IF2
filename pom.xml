@@ -9,11 +9,12 @@
 	<description>Intercor sample application for IF2</description>
 	<packaging>jar</packaging>
 	<dependencies>
+
 		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
-			<version>5.0.0</version>
+			<version>5.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

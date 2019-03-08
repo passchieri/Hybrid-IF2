@@ -8,13 +8,21 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.rabbitmq.client.AMQP.BasicProperties;
+import com.rabbitmq.client.AMQP.Queue.DeclareOk;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
-import com.rabbitmq.client.AMQP.BasicProperties;
-import com.rabbitmq.client.AMQP.Queue.DeclareOk;
 
 public class IF2Consumer extends IF2Client {
+
+	public IF2Consumer() {
+		super();
+	}
+
+	public IF2Consumer(Map<String, Object> properties) {
+		super(properties);
+	}
 
 	/**
 	 * Based on the connection and channel opened earlier, create a temporary queue,
@@ -34,7 +42,7 @@ public class IF2Consumer extends IF2Client {
 		try {
 			DeclareOk queueDeclare = channel.queueDeclare("", false, true, true, args);
 			final String queue = queueDeclare.getQueue();
-			channel.queueBind(queue, EXCHANGE, key);
+			channel.queueBind(queue, props.get(IF2Client.EXCHANGE).toString(), key);
 			Consumer consumer = new DefaultConsumer(channel) {
 
 				@Override
