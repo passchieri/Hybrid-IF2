@@ -36,7 +36,7 @@ class ImageMapPoint {
 
 	@Override
 	public String toString() {
-		return "[" + x + ", " + y + " (" + zoom + ")]";
+		return String.format("[%8.8f, %8.8f (%d, args)]",x,y,zoom);
 	}
 
 	public Tile getContainingTile() {

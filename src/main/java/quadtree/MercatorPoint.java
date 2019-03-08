@@ -19,7 +19,7 @@ public class MercatorPoint {
 
 	@Override
 	public String toString() {
-		return "[" + x + ", " + y + "]";
+		return String.format("[%8.8f, %8.8f]", x,y);
 	}
 
 	public ImageMapPoint asImagePoint(int zoom) {

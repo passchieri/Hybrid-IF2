@@ -56,7 +56,7 @@ public class LatLon {
 
 	@Override
 	public String toString() {
-		return "(" + lat + ", " + lon + ")";
+		return String.format("[%8.8f, %8.8f]", lat,lon);
 	}
 
 	public Tile getContainingTile(int zoom) {
