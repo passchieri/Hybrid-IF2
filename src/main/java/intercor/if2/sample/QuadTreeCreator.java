@@ -38,7 +38,7 @@ public class QuadTreeCreator {
 	}
 
 	private static void usage(PrintStream stream) {
-		stream.println("<program name> <latitude> <longitude> <zoomlevel>");
+		stream.println("<program name> <latitude> <longitude> <zoomlevel> [seperator]");
 	}
 
 }
