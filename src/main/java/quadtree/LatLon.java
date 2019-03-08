@@ -7,7 +7,7 @@ package quadtree;
  * @copyright (c) Tass International BV
  * *
  */
-class LatLon {
+public class LatLon {
 	@Override
 	public int hashCode() {
 		final int prime = 31;

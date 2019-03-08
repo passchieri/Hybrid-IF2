@@ -8,7 +8,7 @@ package quadtree;
  * @author Igor Passchier
  * @copyright (c) Tass International BV *
  */
-class Tile {
+public class Tile {
 	final int x;
 	final int y;
 	final int zoom;
