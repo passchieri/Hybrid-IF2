@@ -8,4 +8,4 @@ The code is by no means robust, and should not be used in an operational environ
 command line, e.g. username=user password=pwd etc. See [IF2Client.java](src/main/java/intercor/if2/client/IF2Client.java) for all
 available parameters.
 
-The IF2 specifications are based on QuadTree encoded locations. This example code also contains an implementation of the QuadTree algoritmn. A stand-alone example application is provided in [QuadTreeCreator.java](src/main/java/interfor/if2/sample/QuadTreeCreator.java), and as executable jar file in [QuadTreeCreator.jar](bin/QuadTreeCreator.jar)
+The IF2 specifications are based on QuadTree encoded locations. This example code also contains an implementation of the QuadTree algoritmn. A stand-alone example application is provided in [QuadTreeCreator.java](src/main/java/intercor/if2/sample/QuadTreeCreator.java), and as executable jar file in [QuadTreeCreator.jar](bin/QuadTreeCreator.jar)
